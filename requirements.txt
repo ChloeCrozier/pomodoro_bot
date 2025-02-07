@@ -1,0 +1,6 @@
+discord.py
+python-dotenv
+requests
+os
+random
+google-generativeai
