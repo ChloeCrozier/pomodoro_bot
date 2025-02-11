@@ -17,7 +17,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Timer modes
 TIMER_MODES = {
-    "work": 1 * 60,  # 25 minutes
+    "work": 25 * 60,  # 25 minutes
     "short_break": 5 * 60,  # 5 minutes
     "long_break": 15 * 60  # 15 minutes
 }
@@ -39,6 +39,9 @@ class StudySession:
             for remaining in range(mode_duration, 0, -1):
                 if not self.session_active:
                     break
+                minutes, seconds = divmod(remaining, 60)
+                countdown_message = f"Time remaining: {minutes:02d}:{seconds:02d}"
+                await ctx.send(countdown_message, delete_after=1)
                 await asyncio.sleep(1)
             if self.session_active:
                 await ctx.send(f"Time's up! {self.current_mode.replace('_', ' ')} completed.")
