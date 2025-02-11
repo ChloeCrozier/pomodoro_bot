@@ -3,4 +3,4 @@ python-dotenv
 requests
 os
 random
-google-generativeai
+asyncio
